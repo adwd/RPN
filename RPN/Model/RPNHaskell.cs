@@ -18,7 +18,7 @@ namespace RPN.Model
         private static extern void hs_exit();
 
         [DllImport("HSdll.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern UInt32 c_fibonacci(byte i);
+        private static extern float solveRPN_hs(string str);
 
         public RPNHaskell()
         {
@@ -32,10 +32,10 @@ namespace RPN.Model
             hs_exit();
         }
 
-        public UInt32 fibonacci(byte i)
+        public float solveRPN(string str)
         {
-            Debug.WriteLine(string.Format("Calling c_fibonacci({0})...", i));
-            var result = c_fibonacci(i);
+            Debug.WriteLine(string.Format("Calling c_fibonacci({0})...", str));
+            var result = solveRPN_hs(str);
             Debug.WriteLine(string.Format("Result = {0}", result));
             return result;
         }
