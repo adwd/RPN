@@ -1,12 +1,16 @@
 ﻿<Window x:Class="RPN.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:RPN.ViewModel"
         Title="MainWindow"
         Width="525"
         Height="350">
+    <Window.DataContext>
+        <vm:RPNViewModel />
+    </Window.DataContext>
     <StackPanel>
-        <TextBox />
-        <TextBlock x:Name="text" />
+        <TextBox Text="{Binding Input.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Text="{Binding Output.Value, UpdateSourceTrigger=PropertyChanged}" />
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />

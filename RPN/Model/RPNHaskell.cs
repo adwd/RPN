@@ -34,7 +34,7 @@ namespace RPN.Model
 
         public float solveRPN(string str)
         {
-            Debug.WriteLine(string.Format("Calling c_fibonacci({0})...", str));
+            Debug.WriteLine(string.Format("Calling solveRPN_hs({0})...", str));
             var result = solveRPN_hs(str);
             Debug.WriteLine(string.Format("Result = {0}", result));
             return result;

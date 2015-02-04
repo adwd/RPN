@@ -23,10 +23,6 @@ namespace RPN
         public MainWindow()
         {
             InitializeComponent();
-
-            var fib = new RPN.Model.RPNHaskell();
-            var res = fib.solveRPN("10 4 3 + 2 * -");
-            this.text.Text = res.ToString();
         }
     }
 }
