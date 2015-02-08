@@ -8,6 +8,12 @@
     <Window.DataContext>
         <vm:RPNViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Command" Value="{Binding AddChar}" />
+            <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Self}}" />
+        </Style>
+    </Window.Resources>
     <StackPanel>
         <TextBox Text="{Binding Input.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock Text="{Binding Output.Value, UpdateSourceTrigger=PropertyChanged}" />

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace RPN.ViewModel
 {
@@ -11,20 +12,35 @@ namespace RPN.ViewModel
     {
         public ReactiveProperty<string> Input { get; set; }
         public ReactiveProperty<float> Output { get; set; }
+        public ReactiveCommand AddChar { get; private set; }
 
         private RPN.Model.RPNHaskell rpnModel { get; set; }
 
         public RPNViewModel()
         {
-            this.Input = new ReactiveProperty<string>();
-            this.Output = new ReactiveProperty<float>();
+            Input = new ReactiveProperty<string>();
+            Output = new ReactiveProperty<float>();
 
-            this.rpnModel = new Model.RPNHaskell();
-            //var res = rpnModel.solveRPN("10 4 3 + 2 * -");
-            //this.text.Text = res.ToString();
+            AddChar = new ReactiveCommand();
+            AddChar.Subscribe(o => addChar(((Button)o).Content as string));
 
-            this.Input.Value = "10 4 3 + 2 * -";
-            this.Input.Subscribe(s => this.Output.Value = this.rpnModel.solveRPN(s));
+            rpnModel = new Model.RPNHaskell();
+
+            Input.Value = "10 4 3 + 2 * -";
+            Input.Subscribe(s => Output.Value = rpnModel.solveRPN(s));
+        }
+
+        private void addChar(string str)
+        {
+            // TODO: Cover all of buttons
+            if (str == "3")
+            {
+                Input.Value += " 3";
+            }
+            if (str == "+")
+            {
+                Input.Value += " +";
+            }
         }
     }
 }
